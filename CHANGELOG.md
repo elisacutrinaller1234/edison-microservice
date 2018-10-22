@@ -1,5 +1,8 @@
 # Release Notes
 
+## 1.2.30
+* **[edison-jobs]** bugfix: delete instant for lastModified in job meta repository 
+
 ## 1.2.29
 * **[edison-core]** bugfix: default whitelist path is not ignored anymore
 
