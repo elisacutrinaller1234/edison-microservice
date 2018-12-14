@@ -1,5 +1,8 @@
 # Release Notes
 
+## 1.2.31
+* **[edison-jobs]** bugfix: calculate job status only on stopped jobs
+
 ## 1.2.30
 * **[edison-jobs]** bugfix: delete instant for lastModified in job meta repository 
 

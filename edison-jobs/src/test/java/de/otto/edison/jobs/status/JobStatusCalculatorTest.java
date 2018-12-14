@@ -69,7 +69,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateOkIfLastJobOk() {
         // given
         final List<JobInfo> jobs = singletonList(someStoppedJob(OK, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobs);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobs);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -87,7 +87,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateOkIfLastJobSkipped() {
         // given
         final List<JobInfo> jobs = singletonList(someStoppedJob(SKIPPED, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobs);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobs);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -106,7 +106,7 @@ public class JobStatusCalculatorTest {
         // given
         final JobInfo jobInfo = someStoppedJob(OK, 1);
         final List<JobInfo> jobs = singletonList(jobInfo);
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobs);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobs);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -122,7 +122,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateStateIfLastJobFailed() {
         // given
         final List<JobInfo> jobInfos = singletonList(someStoppedJob(ERROR, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -143,7 +143,7 @@ public class JobStatusCalculatorTest {
         final List<JobInfo> jobInfos = asList(
                 someStoppedJob(OK, 1),
                 someStoppedJob(ERROR, 2));
-        when(jobRepository.findLatestBy(anyString(), eq(2))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(2+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -161,7 +161,7 @@ public class JobStatusCalculatorTest {
         final List<JobInfo> jobInfos = asList(
                 someStoppedJob(ERROR, 1),
                 someStoppedJob(OK, 2));
-        when(jobRepository.findLatestBy(anyString(), eq(2))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(2+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -180,7 +180,7 @@ public class JobStatusCalculatorTest {
                 someStoppedJob(OK, 1),
                 someStoppedJob(ERROR, 2),
                 someStoppedJob(ERROR, 2));
-        when(jobRepository.findLatestBy(anyString(), eq(3))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(3+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -200,7 +200,7 @@ public class JobStatusCalculatorTest {
                 someStoppedJob(ERROR, 1),
                 someStoppedJob(OK, 2),
                 someStoppedJob(ERROR, 2));
-        when(jobRepository.findLatestBy(anyString(), eq(3))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(3+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -219,7 +219,7 @@ public class JobStatusCalculatorTest {
         final List<JobInfo> jobInfos = asList(
                 someStoppedJob(ERROR, 1),
                 someStoppedJob(ERROR, 2));
-        when(jobRepository.findLatestBy(anyString(), eq(2))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(2+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -238,8 +238,8 @@ public class JobStatusCalculatorTest {
         final List<JobInfo> jobInfos = asList(
                 someStoppedJob(OK, 11),
                 someStoppedJob(OK, 12));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobInfo);
-        when(jobRepository.findLatestBy(anyString(), eq(2))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobInfo);
+        when(jobRepository.findLatestBy(anyString(), eq(2+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -260,7 +260,7 @@ public class JobStatusCalculatorTest {
     @Test
     public void shouldNotHaveUriOrRunningIfNoJobPresent() {
         // given
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(emptyList());
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(emptyList());
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -277,7 +277,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateThatJobIsNotRunning() {
         // given
         final List<JobInfo> jobInfos = singletonList(someStoppedJob(OK, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -293,7 +293,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateWarningIfJobRunWasDead() {
         // given
         final List<JobInfo> jobInfos = singletonList(someRunningJob(DEAD, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -309,7 +309,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateWarningIfLastJobRunWasDead() {
         // given
         final List<JobInfo> jobInfos = singletonList(someStoppedJob(DEAD, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobInfos);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -325,7 +325,7 @@ public class JobStatusCalculatorTest {
     public void shouldIndicateOkForDisabledJob() {
         // given
         final List<JobInfo> jobs = singletonList(someStoppedJob(ERROR, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobs);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobs);
         final JobMeta jobMeta = new JobMeta("test", false, true, "Test", emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
         // when
@@ -342,7 +342,7 @@ public class JobStatusCalculatorTest {
     @SuppressWarnings("unchecked")
     public void shouldIndicateErrorIfJobCouldNotBeRetievedFromRepository() {
         // given
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenThrow(RuntimeException.class);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenThrow(RuntimeException.class);
         final JobMeta jobMeta = new JobMeta("test", false, false, null, emptyMap());
         when(jobMetaRepository.getJobMeta(anyString())).thenReturn(jobMeta);
 
@@ -356,7 +356,7 @@ public class JobStatusCalculatorTest {
     @Test
     public void shouldAcceptIfNoJobRan() {
         // given
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(emptyList());
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(emptyList());
 
         // when
         StatusDetail statusDetail = errorOnLastJobFailed.statusDetail(jobDefinition);
@@ -369,7 +369,7 @@ public class JobStatusCalculatorTest {
     public void shouldHaveName() {
         // given
         final List<JobInfo> jobInfos = singletonList(someStoppedJob(OK, 1));
-        when(jobRepository.findLatestBy(anyString(), eq(1))).thenReturn(jobInfos);
+        when(jobRepository.findLatestBy(anyString(), eq(1+1))).thenReturn(jobInfos);
 
         // when
         StatusDetail statusDetail = errorOnLastJobFailed.statusDetail(jobDefinition);

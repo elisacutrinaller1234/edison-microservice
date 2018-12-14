@@ -192,7 +192,7 @@ public class JobStatusCalculator {
      */
     public StatusDetail statusDetail(final JobDefinition jobDefinition) {
         try {
-            final List<JobInfo> jobs = jobRepository.findLatestBy(jobDefinition.jobType(), numberOfJobs);
+            final List<JobInfo> jobs = jobRepository.findLatestBy(jobDefinition.jobType(), numberOfJobs + 1);
             return jobs.isEmpty()
                     ? statusDetailWhenNoJobAvailable(jobDefinition)
                     : toStatusDetail(jobs, jobDefinition);
@@ -217,7 +217,8 @@ public class JobStatusCalculator {
                                           final JobDefinition jobDefinition) {
         final Status status;
         final String message;
-        final JobInfo lastJob = jobInfos.get(0);
+        final JobInfo currentJob = jobInfos.get(0);
+        final JobInfo lastJob = (!currentJob.getStopped().isPresent() && currentJob.getStatus() == JobStatus.OK && jobInfos.size() > 1) ? jobInfos.get(1) : jobInfos.get(0);
         final JobMeta jobMeta = getJobMeta(jobDefinition.jobType());
         long numFailedJobs = getNumFailedJobs(jobInfos);
         if (!jobMeta.isDisabled()) {
