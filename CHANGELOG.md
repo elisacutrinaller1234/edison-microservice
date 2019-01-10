@@ -1,5 +1,8 @@
 # Release Notes
 
+## 1.2.32
+* **[edison-mongo]** bugfix: configure timeout for job repository
+
 ## 1.2.31
 * **[edison-jobs]** bugfix: calculate job status only on stopped jobs
 
