@@ -1,5 +1,8 @@
 # Release Notes
 
+## 1.2.33
+* **[edison-jobs]** bugfix: SaxParseException using thymeleaf < 3.0
+
 ## 1.2.32
 * **[edison-mongo]** bugfix: configure timeout for job repository
 
