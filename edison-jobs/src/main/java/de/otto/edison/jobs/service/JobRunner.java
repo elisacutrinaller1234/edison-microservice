@@ -51,7 +51,7 @@ public final class JobRunner {
             final int restarts = runnable.getJobDefinition().restarts();
             final Optional<Duration> retryDelay = runnable.getJobDefinition().retryDelay();
             executeAndRetry(runnable, restarts, retryDelay);
-        } catch (final RuntimeException e) {
+        } catch (final Throwable e) {
             error(e);
         } finally {
             JobEvents.deregister();
@@ -97,7 +97,7 @@ public final class JobRunner {
         }
     }
 
-    private synchronized void error(final Exception e) {
+    private synchronized void error(final Throwable e) {
         StringWriter stacktrace = new StringWriter();
         PrintWriter pw = new PrintWriter(stacktrace);
         e.printStackTrace(pw);
