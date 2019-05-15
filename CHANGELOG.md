@@ -1,5 +1,8 @@
 # Release Notes
 
+## 1.2.34
+* **[edison-jobs]** bugfix: skip only for job with state ok
+
 ## 1.2.33
 * **[edison-jobs]** bugfix: SaxParseException using thymeleaf < 3.0
 

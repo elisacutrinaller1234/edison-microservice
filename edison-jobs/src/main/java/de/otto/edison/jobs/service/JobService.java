@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import java.time.Clock;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
@@ -208,8 +209,10 @@ public class JobService {
         // TODO: Refactor JobRepository so only a single update is required
         OffsetDateTime currentTimestamp = now(clock);
         jobRepository.appendMessage(jobId, jobMessage(Level.INFO, "Skipped job ..", currentTimestamp));
-        jobRepository.setLastUpdate(jobId, currentTimestamp);
-        jobRepository.setJobStatus(jobId, JobStatus.SKIPPED);
+        if (Objects.equals(jobRepository.findStatus(jobId), JobStatus.OK)) {
+            jobRepository.setLastUpdate(jobId, currentTimestamp);
+            jobRepository.setJobStatus(jobId, JobStatus.SKIPPED);
+        }
     }
 
     public void markRestarted(String jobId) {

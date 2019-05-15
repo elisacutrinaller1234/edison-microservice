@@ -193,6 +193,9 @@ public class JobServiceTest {
 
     @Test
     public void shouldMarkSkipped() {
+        //given
+        when(jobRepository.findStatus(JOB_ID)).thenReturn(JobInfo.JobStatus.OK);
+
         //when
         jobService.markSkipped(JOB_ID);
 
@@ -200,6 +203,7 @@ public class JobServiceTest {
         OffsetDateTime now = OffsetDateTime.now(clock);
 
         verify(jobRepository).appendMessage(JOB_ID, jobMessage(Level.INFO, "Skipped job ..", now));
+        verify(jobRepository).findStatus(JOB_ID);
         verify(jobRepository).setLastUpdate(JOB_ID, now);
         verify(jobRepository).setJobStatus(JOB_ID, JobInfo.JobStatus.SKIPPED);
     }
