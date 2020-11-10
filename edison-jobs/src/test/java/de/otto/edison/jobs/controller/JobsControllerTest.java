@@ -47,13 +47,13 @@ public class JobsControllerTest {
     @Mock
     private NavBar navBar;
 
-    private EdisonApplicationProperties applicationProperties = new EdisonApplicationProperties();
+    private final EdisonApplicationProperties applicationProperties = new EdisonApplicationProperties();
 
     private MockMvc mockMvc;
     private JobsController jobsController;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
         jobsController = new JobsController(jobService, jobMetaService, navBar, applicationProperties);
         mockMvc = MockMvcBuilders

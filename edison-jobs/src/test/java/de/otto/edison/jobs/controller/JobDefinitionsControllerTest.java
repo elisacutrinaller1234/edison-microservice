@@ -33,9 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class JobDefinitionsControllerTest {
 
-    private JobDefinitionsController controller;
-
-    private EdisonApplicationProperties webEndpointProperties = new EdisonApplicationProperties();
+    private final EdisonApplicationProperties webEndpointProperties = new EdisonApplicationProperties();
 
     @Mock
     private NavBar navBar;
@@ -48,13 +46,13 @@ public class JobDefinitionsControllerTest {
 
     private MockMvc mockMvc;
 
-    private static String MANAGEMENT_CONTEXT = "/someManagementContext";
+    private static final String MANAGEMENT_CONTEXT = "/someManagementContext";
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         openMocks(this);
         webEndpointProperties.getManagement().setBasePath(MANAGEMENT_CONTEXT);
-        controller = new JobDefinitionsController(jobDefinitionService, jobMetaService, navBar, webEndpointProperties);
+        JobDefinitionsController controller = new JobDefinitionsController(jobDefinitionService, jobMetaService, navBar, webEndpointProperties);
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
                 .addPlaceholderValue("edison.application.management.base-path", MANAGEMENT_CONTEXT)
                 .build();

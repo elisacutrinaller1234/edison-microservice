@@ -56,7 +56,7 @@ public class S3TogglzRepositoryTest {
 
         final FeatureState featureStateFromCache = s3TogglzRepository.getFeatureState(feature);
         assertThat(featureStateFromCache, is(featureState));
-        verifyNoInteractions(featureStateConverter);
+        verifyNoMoreInteractions(featureStateConverter);
     }
 
     @Test
