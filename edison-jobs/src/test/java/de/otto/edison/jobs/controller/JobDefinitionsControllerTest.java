@@ -26,7 +26,7 @@ import static java.util.Optional.empty;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.MockitoAnnotations.openMocks;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -52,7 +52,7 @@ public class JobDefinitionsControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        initMocks(this);
+        openMocks(this);
         webEndpointProperties.getManagement().setBasePath(MANAGEMENT_CONTEXT);
         controller = new JobDefinitionsController(jobDefinitionService, jobMetaService, navBar, webEndpointProperties);
         mockMvc = MockMvcBuilders.standaloneSetup(controller)

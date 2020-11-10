@@ -54,7 +54,7 @@ public class JobsControllerTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         jobsController = new JobsController(jobService, jobMetaService, navBar, applicationProperties);
         mockMvc = MockMvcBuilders
                 .standaloneSetup(jobsController)
