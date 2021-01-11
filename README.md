@@ -7,7 +7,7 @@ Collection of independent libraries on top of Spring Boot to provide a faster se
 
 ## Status
 
-[![build](https://travis-ci.org/otto-de/edison-microservice.svg?branch=1.2.x)](https://travis-ci.org/otto-de/edison-microservice) 
+[![build](https://github.com/otto-de/edison-microservice/workflows/Build/badge.svg?branch=1.2.x)](https://github.com/otto-de/edison-microservice/actions?query=workflow%3ABuild+branch%3A1.2.x) 
 [![codecov](https://codecov.io/gh/otto-de/edison-microservice/branch/1.2.x/graph/badge.svg)](https://codecov.io/gh/otto-de/edison-microservice)
 [![release](https://maven-badges.herokuapp.com/maven-central/de.otto.edison/edison-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.otto.edison/edison-core)
 [![license](https://img.shields.io/github/license/otto-de/edison-microservice.svg)](./LICENSE)
